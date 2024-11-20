@@ -1,0 +1,34 @@
+server:
+  port: 2001
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 831203832323-k3ei5igot8curresqku8kvlvcu8tv474.apps.googleusercontent.com
+            clientSecret: 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
+            scope: openid, email, profile
+            redirectUri: "{baseUrl}/login/oauth2/code/google"
+            clientName: Google
+        provider:
+          google:
+            authorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+            tokenUri: https://oauth2.googleapis.com/token
+            userInfoUri: https://openidconnect.googleapis.com/v1/userinfo
+            userNameAttribute: sub  # Unique identifier for the user in Google
+  banner:
+    location:
+      classpath:banner.txt
+  datasource:
+    username: root
+    password: Faizan@04
+    url: jdbc:mysql://localhost:3306/users_DB?createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+rsa:
+  private-key: classpath:certificate/private.pem
+  public-key: classpath:certificate/public.pem
